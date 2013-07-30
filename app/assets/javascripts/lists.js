@@ -4,10 +4,11 @@
 $(function(){
 
   function print_lists(data) {
-    console.log("Lists.json");
+    console.log("This is Lists.json:");
     console.log(data);
     var lists_container = $(".lists");
     _(data).each( function(list){
+    console.log("This is a list item from Lists.json:");
     console.log(list);
       lists_container.append('<div class="single_list"><div class="list_header"><h2>'+list.name+'</h2></div><ul id="sortable" class="list_items">');
       if (list.items.length > 0) {
@@ -21,15 +22,18 @@ $(function(){
       lists_container.append('</ul></div>');
 
     });
-  $( "#sortable" ).each(function() {
-    $(this).sortable();
-  });
-  $( "#sortable" ).disableSelection();
-
 
   };
 
   $.getJSON('http://localhost:3000/lists.json', print_lists)
+
+  $( "#sortable" ).each(function() {
+    console.log("found a sortable id");
+    $(this).sortable();
+  });
+
+  $( "#sortable" ).disableSelection();
+
 
 
 });
